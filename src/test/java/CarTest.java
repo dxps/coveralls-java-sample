@@ -40,6 +40,7 @@ public class CarTest {
             car.enableDriveMode();
             Assertions.fail("Engine must reject enabling drive mode since it's not yet warmed up.");
         } catch (EngineException e) {
+            assertEquals(EngineException.ENGINE_NOT_WARMED_UP, e.getMessage());
             // Expected & ok.
         }
 
@@ -50,7 +51,6 @@ public class CarTest {
 
         try {
             car.enableDriveMode();
-
         } catch (EngineException e) {
             Assertions.fail("Engine failed to enable drive mode.", e);
         }
@@ -66,6 +66,7 @@ public class CarTest {
             car.turnEngineOn();
             Assertions.fail("Car must reject turning the engine on since the engine is in maintenance");
         } catch (EngineException e) {
+            assertEquals(EngineException.ENGINE_IN_MAINTENANCE, e.getMessage());
             // Expected & ok.
         }
 

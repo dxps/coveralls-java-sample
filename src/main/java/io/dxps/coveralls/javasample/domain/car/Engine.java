@@ -20,7 +20,7 @@ public class Engine {
     public Engine(String id, String name) {
         this.id = id;
         this.name = name;
-        this.inMaintenance = true;
+        this.inMaintenance = false;
         this.state = EngineState.OFF;
     }
 
@@ -41,8 +41,8 @@ public class Engine {
     }
 
     void turnOn() throws EngineException {
-        if (!isInMaintenance()) {
-            throw new EngineException(EngineException.ENGINE_NOT_FUNCTIONAL);
+        if (isInMaintenance()) {
+            throw new EngineException(EngineException.ENGINE_IN_MAINTENANCE);
         }
         this.state = EngineState.ON;
         this.turnOnTime = Instant.now();
