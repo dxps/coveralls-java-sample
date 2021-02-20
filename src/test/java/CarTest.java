@@ -57,14 +57,14 @@ public class CarTest {
 
         car.turnEngineOff();
 
-        assertTrue(car.isTurnedOff(), "Car should be turned off after the engine has been turned off");
+        assertTrue(car.isTurnedOff(), "Car should be turned off after the engine has been turned off.");
 
         car.activateEngineMaintenance();
         assertTrue(car.IsEngineInMaintenance());
 
         try {
             car.turnEngineOn();
-            Assertions.fail("Car must reject turning the engine on since the engine is in maintenance");
+            Assertions.fail("Car must reject turning the engine on since the engine is in maintenance.");
         } catch (EngineException e) {
             assertEquals(EngineException.ENGINE_IN_MAINTENANCE, e.getMessage());
             // Expected & ok.
@@ -72,6 +72,16 @@ public class CarTest {
 
         car.deactivateEngineMaintenance();
         assertFalse(car.IsEngineInMaintenance());
+
+        car.activateEngineMaintenance();
+        assertTrue(car.IsEngineInMaintenance());
+
+        try {
+            car.enableDriveMode();
+            fail("Car must reject enable drive mode if engine is in maintenance.");
+        } catch (EngineException e) {
+            // Expected & ok.
+        }
     }
 
 }
