@@ -7,6 +7,7 @@ public class EngineException extends Exception {
 
     public static final String ENGINE_NOT_FUNCTIONAL = "Engine is not functional";
     public static final String ENGINE_NOT_WARMED_UP = "Engine is not warmed up";
+    public static final String ENGINE_IN_MAINTENANCE = "Engine is in maintenance";
 
     public EngineException(String message) {
         super(message);

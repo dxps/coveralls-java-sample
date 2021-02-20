@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class CarTest {
@@ -40,7 +40,7 @@ public class CarTest {
             car.enableDriveMode();
             Assertions.fail("Engine must reject enabling drive mode since it's not yet warmed up.");
         } catch (EngineException e) {
-            // expected, so it's fine
+            // Expected & ok.
         }
 
         try {
@@ -57,8 +57,20 @@ public class CarTest {
 
         car.turnEngineOff();
 
-        Assertions.assertTrue(car.isTurnedOff(), "Car should be turned off after the engine has been turned off");
+        assertTrue(car.isTurnedOff(), "Car should be turned off after the engine has been turned off");
 
+        car.activateEngineMaintenance();
+        assertTrue(car.IsEngineInMaintenance());
+
+        try {
+            car.turnEngineOn();
+            Assertions.fail("Car must reject turning the engine on since the engine is in maintenance");
+        } catch (EngineException e) {
+            // Expected & ok.
+        }
+
+        car.deactivateEngineMaintenance();
+        assertFalse(car.IsEngineInMaintenance());
     }
 
 }

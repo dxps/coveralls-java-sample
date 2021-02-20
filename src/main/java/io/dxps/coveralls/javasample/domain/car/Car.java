@@ -35,9 +35,6 @@ public class Car {
     }
 
     public void turnEngineOn() throws EngineException {
-        if (!engine.isFunctional()) {
-            throw new EngineException(EngineException.ENGINE_NOT_FUNCTIONAL);
-        }
         engine.turnOn();
     }
 
@@ -51,6 +48,18 @@ public class Car {
 
     public boolean isTurnedOff() {
         return engine.isTurnedOff();
+    }
+
+    public void activateEngineMaintenance() {
+        engine.activateMaintenance();
+    }
+
+    public void deactivateEngineMaintenance() {
+        engine.deactivateMaintenance();
+    }
+
+    public boolean IsEngineInMaintenance() {
+        return engine.isInMaintenance();
     }
 
 }
