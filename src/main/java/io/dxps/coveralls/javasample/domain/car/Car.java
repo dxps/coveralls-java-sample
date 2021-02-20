@@ -2,6 +2,7 @@ package io.dxps.coveralls.javasample.domain.car;
 
 import io.dxps.coveralls.javasample.domain.exceptions.EngineException;
 
+
 public class Car {
 
     private final String id;
@@ -33,13 +34,23 @@ public class Car {
         return engine;
     }
 
-    public void turnOnEngine() throws EngineException {
+    public void turnEngineOn() throws EngineException {
         if (!engine.isFunctional()) {
-            throw new EngineException("Engine is not functional.");
-        } else if (!engine.isWarmedUp()) {
-            throw new EngineException("Engine is not warmed up yet.");
+            throw new EngineException(EngineException.ENGINE_NOT_FUNCTIONAL);
         }
         engine.turnOn();
+    }
+
+    public void enableDriveMode() throws EngineException {
+        engine.enableDriveMode();
+    }
+
+    public void turnEngineOff() {
+        engine.turnOff();
+    }
+
+    public boolean isTurnedOff() {
+        return engine.isTurnedOff();
     }
 
 }
